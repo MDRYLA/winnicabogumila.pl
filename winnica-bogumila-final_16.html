@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winnica Bogu-Miła — Olesno, Małopolska</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --wine: #5C1A1B;
+    --wine-dark: #3A0F10;
+    --gold: #C8972E;
+    --gold-light: #E8C97A;
+    --cream: #FAF6EE;
+    --cream-dark: #F0E9D8;
+    --sage: #D8E4D0;
+    --green-deep: #2D4A2D;
+    --ink: #1C1810;
+    --muted: #6B6055;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.6rem 5%;
+    background: rgba(58,15,16,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,151,46,0.18);
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.45rem; font-weight: 400;
+    color: var(--cream); letter-spacing: 0.04em; text-decoration: none;
+  }
+  .nav-logo em { font-style: italic; color: var(--gold-light); }
+  nav ul { list-style: none; display: flex; gap: 2.2rem; }
+  nav ul a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(250,246,238,0.78);
+    text-decoration: none; transition: color .2s;
+  }
+  nav ul a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold) !important; color: var(--wine-dark) !important;
+    padding: 0.5rem 1.3rem; border-radius: 2px; opacity: 1 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ─── HERO SLIDER ─── */
+  .hero { position: relative; height: 100vh; min-height: 620px; overflow: hidden; }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; display: flex; align-items: center; }
+  .slide.active { opacity: 1; z-index: 2; }
+  .slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transform: scale(1.04);
+    transition: transform 6s ease;
+  }
+  .slide.active .slide-bg { transform: scale(1); }
+  .slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(108deg, rgba(28,24,16,0.74) 38%, rgba(58,15,16,0.30) 100%);
+  }
+  .slide-content {
+    position: relative; z-index: 3;
+    max-width: 680px; margin-left: 8%; padding-top: 4rem;
+  }
+  .slide-eyebrow {
+    font-size: 0.79rem; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.9rem;
+  }
+  .slide-eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--gold-light); }
+  .slide h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(3rem, 5.5vw, 5rem); line-height: 1.08;
+    color: var(--cream); margin-bottom: 1.4rem; letter-spacing: -0.01em;
+  }
+  .slide h1 em { font-style: italic; color: var(--gold-light); }
+  .slide p {
+    font-size: 1.02rem; font-weight: 300; color: rgba(250,246,238,0.80);
+    line-height: 1.75; max-width: 510px; margin-bottom: 2.4rem;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--wine-dark);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.92rem 2rem; border-radius: 2px;
+    transition: background .25s, transform .2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateX(3px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(250,246,238,0.45); color: var(--cream);
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.88rem 1.8rem; border-radius: 2px; margin-left: 1rem;
+    transition: border-color .25s, background .25s;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); background: rgba(200,151,46,0.14); }
+
+  /* Hero controls */
+  .hero-dots { position: absolute; bottom: 2.4rem; left: 8%; z-index: 10; display: flex; gap: 0.6rem; }
+  .dot {
+    width: 28px; height: 2px; background: rgba(250,246,238,0.32);
+    border: none; cursor: pointer; padding: 0; transition: background .35s, width .35s;
+  }
+  .dot.active { background: var(--gold-light); width: 52px; }
+  .hero-nav { position: absolute; bottom: 1.8rem; right: 5%; z-index: 10; display: flex; gap: 0.8rem; }
+  .hero-btn {
+    width: 46px; height: 46px; border: 1px solid rgba(250,246,238,0.38);
+    background: transparent; cursor: pointer; color: var(--cream);
+    font-size: 1.1rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .hero-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
+
+  /* ─── SEKCJE ─── */
+  section { padding: 6rem 8%; }
+  .section-label {
+    font-size: 0.77rem; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::after { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.14;
+    color: var(--wine-dark); margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--wine); }
+
+  /* ─── O WINNICY ─── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img {
+    position: relative; aspect-ratio: 4/5; border-radius: 2px; overflow: hidden;
+  }
+  .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-img::before {
+    content: ''; position: absolute;
+    top: -1.4rem; left: -1.4rem; right: 1.4rem; bottom: 1.4rem;
+    border: 1px solid var(--gold); border-radius: 2px; z-index: -1;
+  }
+  blockquote {
+    border-left: 2px solid var(--gold); padding-left: 1.5rem;
+    margin: 2rem 0; font-family: var(--serif); font-size: 1.22rem;
+    font-style: italic; font-weight: 300; color: var(--wine); line-height: 1.7;
+  }
+  .lead { font-size: 1.04rem; font-weight: 300; line-height: 1.8; color: var(--muted); max-width: 620px; }
+  .about-body { font-size: 1rem; font-weight: 300; line-height: 1.82; color: var(--muted); margin-bottom: 1rem; }
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 2.8rem; border: 1px solid var(--cream-dark); }
+  .stat { padding: 1.5rem; text-align: center; border-right: 1px solid var(--cream-dark); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; color: var(--wine); }
+  .stat-label { font-size: 0.77rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+
+  /* ─── WINA ─── */
+  .wines {
+    position: relative;
+    background: var(--wine-dark);
+  }
+  .wines-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://mstudio.net/wp-content/uploads/2026/03/f39.jpg');
+    background-size: cover; background-position: center;
+    opacity: 0.12;
+  }
+  .wines-inner { position: relative; z-index: 1; }
+  .wines h2 { color: var(--cream); }
+  .wines .section-label { color: var(--gold-light); }
+  .wines .section-label::after { background: var(--gold-light); }
+  .wines-intro { font-size: 1.02rem; font-weight: 300; line-height: 1.8; color: rgba(250,246,238,0.62); max-width: 580px; margin: 0 auto 3.5rem; text-align: center; }
+  .wines-header { text-align: center; }
+  .wines-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .wine-card {
+    background: rgba(250,246,238,0.05); border: 1px solid rgba(250,246,238,0.10);
+    border-radius: 2px; overflow: hidden;
+    transition: border-color .3s;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+  }
+  .wine-card:hover { border-color: rgba(200,151,46,0.5); }
+  .wine-img {
+    height: 320px; overflow: hidden;
+    background: rgba(15,8,5,0.6);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .wine-img img {
+    height: 100%; width: 100%; object-fit: contain;
+    object-position: center center;
+    padding: 1.2rem 1.5rem;
+    transition: transform .4s ease;
+  }
+  .wine-card:hover .wine-img img { transform: scale(1.05); }
+  .wine-img-overlay {
+    position: absolute; inset: 0;
+    background: rgba(58,15,16,0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .3s;
+  }
+  .wine-card:hover .wine-img-overlay { background: rgba(58,15,16,0.28); }
+  .wine-zoom {
+    color: var(--cream); font-size: 2rem; font-weight: 300;
+    opacity: 0; transition: opacity .3s; line-height: 1;
+    border: 1px solid rgba(250,246,238,0.6); border-radius: 50%;
+    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+  }
+  .wine-card:hover .wine-zoom { opacity: 1; }
+  .wine-body { padding: 1.4rem 1.6rem; flex: 1; display: flex; flex-direction: column; border-top: 1px solid rgba(250,246,238,0.08); }
+  .wine-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--cream); margin-bottom: 0.4rem; }
+  .wine-card p { font-size: 0.93rem; font-weight: 300; line-height: 1.72; color: rgba(250,246,238,0.58); flex: 1; }
+  .wine-tag {
+    display: inline-block; margin-top: 0.9rem;
+    background: rgba(200,151,46,0.18); color: var(--gold-light);
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.25rem 0.8rem; border-radius: 2px;
+  }
+
+  /* ─── OFERTA ─── */
+  .offer { background: var(--sage); }
+  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .offer-card {
+    background: #fff; border-radius: 2px; padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  .offer-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px; background: var(--gold);
+  }
+  .offer-num { font-family: var(--serif); font-size: 3.4rem; font-weight: 300; color: var(--cream-dark); line-height: 1; margin-bottom: 0.8rem; }
+  .offer-card h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; color: var(--wine-dark); margin-bottom: 0.8rem; }
+  .offer-card p { font-size: 0.97rem; font-weight: 300; line-height: 1.78; color: var(--muted); }
+  .offer-card ul { list-style: none; margin-top: 1.2rem; }
+  .offer-card ul li { font-size: 0.91rem; color: var(--muted); padding: 0.3rem 0; display: flex; align-items: center; gap: 0.6rem; }
+  .offer-card ul li::before { content: ''; flex: 0 0 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+  /* ─── GALERIA ─── */
+  .gallery { background: var(--ink); padding: 5rem 0; }
+  .gallery-header { padding: 0 8%; margin-bottom: 2.5rem; }
+  .gallery-header h2 { color: var(--cream); }
+  .gallery-header .section-label { color: var(--gold-light); }
+  .gallery-header .section-label::after { background: var(--gold-light); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 280px;
+    gap: 4px;
+    grid-auto-flow: dense;
+  }
+  .g-item {
+    overflow: hidden; position: relative; cursor: pointer;
+    background: #111;
+  }
+  .g-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
+  }
+  .g-item:hover img { transform: scale(1.07); }
+  .g-item.wide { grid-column: span 2; }
+  .g-item.tall { grid-row: span 2; }
+  .g-overlay {
+    position: absolute; inset: 0;
+    background: rgba(58,15,16,0.0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .3s;
+  }
+  .g-item:hover .g-overlay { background: rgba(58,15,16,0.35); }
+  .g-zoom-icon {
+    color: var(--cream); font-size: 1.8rem; opacity: 0;
+    transition: opacity .3s; line-height: 1;
+  }
+  .g-item:hover .g-zoom-icon { opacity: 1; }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(10,6,4,0.96);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lb-img-wrap {
+    position: relative; max-width: 90vw; max-height: 88vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-img-wrap img {
+    max-width: 90vw; max-height: 85vh;
+    object-fit: contain; display: block; border-radius: 2px;
+  }
+  .lb-btn {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(250,246,238,0.1); border: 1px solid rgba(250,246,238,0.25);
+    color: var(--cream); font-size: 1.3rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s; z-index: 1001;
+  }
+  .lb-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
+  .lb-prev { left: 1.5rem; }
+  .lb-next { right: 1.5rem; }
+  .lb-close {
+    position: fixed; top: 1.2rem; right: 1.5rem; z-index: 1001;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(250,246,238,0.1); border: 1px solid rgba(250,246,238,0.25);
+    color: var(--cream); font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lb-close:hover { background: var(--wine); border-color: var(--wine); }
+  .lb-counter {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.15em;
+    color: rgba(250,246,238,0.5); z-index: 1001;
+    text-align: center;
+  }
+  .lb-caption {
+    position: fixed; bottom: 3.2rem; left: 50%; transform: translateX(-50%);
+    font-family: var(--serif); font-size: 1.4rem; font-weight: 300;
+    color: var(--cream); z-index: 1001;
+    text-align: center; white-space: nowrap;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── REGION / ZALIPIE ─── */
+  .zalipie { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+  .zalipie-text { background: var(--wine-dark); padding: 5rem 7%; display: flex; flex-direction: column; justify-content: center; }
+  .zalipie-text h2 { color: var(--cream); }
+  .zalipie-text .section-label { color: var(--gold-light); }
+  .zalipie-text .section-label::after { background: var(--gold-light); }
+  .zalipie-text p { font-size: 1rem; font-weight: 300; line-height: 1.82; color: rgba(250,246,238,0.70); margin-bottom: 1.2rem; }
+  .zalipie-img { overflow: hidden; }
+  .zalipie-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ─── KONTAKT ─── */
+  .contact { background: var(--cream-dark); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.2rem 0; border-bottom: 1px solid rgba(92,26,27,0.12); }
+  .contact-item:last-child { border-bottom: none; }
+  .c-icon {
+    width: 36px; height: 36px; flex: 0 0 36px;
+    background: var(--wine); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cream); font-size: 0.85rem;
+  }
+  .c-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+  .c-value { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); line-height: 1.5; }
+  .contact-form { background: #fff; padding: 2.5rem; border-radius: 2px; }
+  .contact-form h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--wine-dark); margin-bottom: 1.5rem; }
+  .form-group { margin-bottom: 1.15rem; }
+  .form-group label { display: block; font-size: 0.77rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.78rem 1rem;
+    border: 1px solid rgba(92,26,27,0.2); border-radius: 2px;
+    font-family: var(--sans); font-size: 0.99rem; background: var(--cream);
+    color: var(--ink); outline: none; transition: border-color .2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-wine {
+    width: 100%; background: var(--wine); color: var(--cream);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; border: none; padding: 1rem; cursor: pointer;
+    border-radius: 2px; font-family: var(--sans); transition: background .25s;
+  }
+  .btn-wine:hover { background: var(--wine-dark); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(250,246,238,0.55);
+    padding: 2.8rem 8%; display: flex;
+    align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.2rem;
+  }
+  .f-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--cream); }
+  .f-logo em { font-style: italic; color: var(--gold-light); }
+  footer small { font-size: 0.81rem; display: block; margin-top: 0.3rem; }
+  .f-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+  .f-links a { font-size: 0.81rem; color: rgba(250,246,238,0.48); text-decoration: none; letter-spacing: 0.06em; }
+  .f-links a:hover { color: var(--gold-light); }
+
+  /* ─── HAMBURGER ─── */
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; width: 40px; height: 40px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 100%; height: 2px;
+    background: var(--cream); border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU DRAWER ─── */
+  .nav-drawer {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(58,15,16,0.98);
+    z-index: 99;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 0;
+  }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a {
+    font-size: 1.6rem; font-family: var(--serif); font-weight: 300;
+    color: var(--cream); text-decoration: none;
+    padding: 1rem 2rem; letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(200,151,46,0.15);
+    width: 100%; text-align: center;
+    transition: color .2s, background .2s;
+  }
+  .nav-drawer a:first-child { border-top: 1px solid rgba(200,151,46,0.15); }
+  .nav-drawer a:hover { color: var(--gold-light); background: rgba(200,151,46,0.08); }
+  .nav-drawer .drawer-cta {
+    margin-top: 1.5rem; background: var(--gold); color: var(--wine-dark) !important;
+    border-radius: 2px; border: none !important; width: auto; padding: 1rem 3rem;
+    font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .nav-drawer .drawer-cta:hover { background: var(--gold-light) !important; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .about-grid, .contact-grid, .zalipie { grid-template-columns: 1fr; }
+    .wines-grid { grid-template-columns: repeat(2, 1fr); }
+    .offer-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+    .g-item.wide, .g-item.tall { grid-column: span 1; grid-row: span 1; }
+    nav ul { display: none; }
+    .nav-hamburger { display: flex; }
+    .zalipie-img { min-height: 300px; }
+  }
+  @media (max-width: 540px) {
+    section { padding: 4rem 6%; }
+    .wines-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     NAWIGACJA
+════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="https://mstudio.net/wp-content/uploads/2026/03/logo-Bogu-Mila-biale.png" alt="Winnica Bogu-Miła" style="height: 72px; width: auto; display: block;">
+  </a>
+  <ul>
+    <li><a href="#o-winnicy">O winnicy</a></li>
+    <li><a href="#wina">Wina</a></li>
+    <li><a href="#oferta">Oferta</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#sklep">Sklep</a></li>
+    <li><a href="#kontakt" class="nav-cta">Zaplanuj wizytę</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#o-winnicy" class="drawer-link">O winnicy</a>
+  <a href="#wina" class="drawer-link">Wina</a>
+  <a href="#oferta" class="drawer-link">Oferta</a>
+  <a href="#galeria" class="drawer-link">Galeria</a>
+  <a href="#sklep" class="drawer-link">Sklep</a>
+  <a href="#kontakt" class="drawer-cta">Zaplanuj wizytę</a>
+</div>
+
+<!-- ════════════════════════════════════
+     HERO — 3 SLAJDY
+════════════════════════════════════ -->
+<section class="hero" id="hero">
+
+  <!-- SLAJD 1 → f8.jpg (zachód słońca, złota godzina, rząd winorośli) -->
+  <div class="slide active">
+    <div class="slide-bg" style="background-image: url('https://mstudio.net/wp-content/uploads/2026/03/f8.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eyebrow">Olesno · Małopolska · od 2008</p>
+      <h1>Gdzie słońce<br><em>całuje winorośl</em></h1>
+      <p>Ekologiczna winnica na płaskich polach dawnego zagłębia truskawkowego. Czyste powietrze, lekka gleba bogata w magnez i pasja, która dojrzewała dekadę — tak zrodziły się wina Bogu-Miła.</p>
+      <div>
+        <a href="#o-winnicy" class="btn-primary">Poznaj naszą historię →</a>
+        <a href="#kontakt" class="btn-outline">Zaplanuj wizytę</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLAJD 2 → f26.jpg (kieliszek białego wina, drewniany blat) -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://mstudio.net/wp-content/uploads/2026/03/f26.jpg'); background-position: center 40%;"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eyebrow">Degustacja · Lokalne przysmaki</p>
+      <h1>Smaki,<br><em>które pamiętasz</em></h1>
+      <p>Solaris, Pinot Gris, Gewurztraminer — aromatyczne, owocowe wina o bogatym charakterze, degustowane przy deskach serów i wędlin od lokalnych producentów. Każdy łyk opowiada tę okolicę.</p>
+      <div>
+        <a href="#wina" class="btn-primary">Odkryj nasze wina →</a>
+        <a href="#oferta" class="btn-outline">Oferta degustacyjna</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLAJD 3 → f11.jpg (biały namiot, goście, wydarzenie plenerowe) -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://mstudio.net/wp-content/uploads/2026/03/f11.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eyebrow">Grupy · Rodziny · Firmy</p>
+      <h1>Twój wyjątkowy<br><em>czas w winnicy</em></h1>
+      <p>Oprowadzanie po uprawach, degustacje z komentarzem, imprezy plenerowe — Winnica Bogu-Miła przyjmuje zarówno gości indywidualnych, jak i grupy zorganizowane przez cały rok.</p>
+      <div>
+        <a href="#kontakt" class="btn-primary">Skontaktuj się →</a>
+        <a href="#oferta" class="btn-outline">Zobacz ofertę</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <button class="dot active" data-idx="0"></button>
+    <button class="dot" data-idx="1"></button>
+    <button class="dot" data-idx="2"></button>
+  </div>
+  <div class="hero-nav">
+    <button class="hero-btn" id="prev">&#8592;</button>
+    <button class="hero-btn" id="next">&#8594;</button>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     O WINNICY
+════════════════════════════════════ -->
+<section id="o-winnicy">
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f7.jpg" alt="Rząd winorośli w Winnicy Bogu-Miła o zachodzie słońca" loading="lazy">
+    </div>
+    <div>
+      <p class="section-label">Nasza historia</p>
+      <h2>Winnica założona<br>z miłości do <em>ziemi</em></h2>
+      <p class="lead">W 2008 roku Jarosław Bogumił postanowił, że płaskie pola Olesna — dawne zagłębie truskawkowe — mogą wydać coś jeszcze szlachetniejszego. Tak powstała Winnica Bogu-Miła, jedna z pierwszych w regionie ENOTarnowskie.</p>
+      <blockquote>„Chociaż na pierwsze wina trzeba było czekać aż dziesięć lat, każdy rok uprawy uczył nas czegoś nowego o tej ziemi."</blockquote>
+      <p class="about-body">Winnica otoczona jest lasami chroniącymi winorośle przed wiatrem, a jej gleba — lekka, przepuszczalna, bogata w magnez — nadaje winom charakterystyczny mineralny profil. Etykiety projektuje lokalna plastyczka Anna Owca, łącząc kwiaty i barwy w stylu nawiązującym do tradycji zalipiańskiej.</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">2008</div>
+          <div class="stat-label">Rok założenia</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1 ha</div>
+          <div class="stat-label">Powierzchnia upraw</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Odmian winorośli</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     NASZE WINA
+════════════════════════════════════ -->
+<section class="wines" id="wina">
+  <div class="wines-bg"></div>
+  <div class="wines-inner">
+    <div class="wines-header">
+      <p class="section-label" style="justify-content:center;">Nasze wina</p>
+      <h2>Siedem etykiet —<br><em>bogactwo smaków</em></h2>
+      <p class="wines-intro">Uprawiamy zarówno czerwone, jak i białe odmiany winorośli. Wszystkie wina cechuje wyrazista owocowość i aromat — efekt ekologicznego środowiska i ręcznej pracy w winnicy. Etykiety zaprojektowane w stylu zalipiańskim.</p>
+    </div>
+    <div class="wines-grid">
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/01-Cuvee-Blanc-2023.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/01-Cuvee-Blanc-2023.jpg" alt="Cuvée Blanc 2023 — Winnica Bogu-Miła" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Cuvée Blanc 2023</h3>
+          <p>Elegancki blend białych odmian. Świeży, mineralny, z nutami białych kwiatów i dojrzałych jabłek. Długi, zrównoważony finisz. Doskonały aperitif i do lekkich dań.</p>
+          <span class="wine-tag">Wino białe</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/02-Cuvee-Dark-2023.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/02-Cuvee-Dark-2023.jpg" alt="Cuvée Dark 2023 — Winnica Bogu-Miła" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Cuvée Dark 2023</h3>
+          <p>Głęboki blend czerwonych odmian — Regent i Roesler. Rubinowa barwa, noty ciemnych owoców leśnych, aksamitna struktura. Idealne do mięs i dojrzałych serów.</p>
+          <span class="wine-tag">Wino czerwone</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/03-Gewurztraminer-polwytrawne-2023.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/03-Gewurztraminer-polwytrawne-2023.jpg" alt="Gewurztraminer półwytrawne 2023" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Gewurztraminer półwytrawne 2023</h3>
+          <p>Intensywny aromat lychee, róż i egzotycznych przypraw. Lekka resztkowa słodycz pięknie balansuje naturalną kwasowość. Wyjątkowe do kuchni azjatyckiej i niebieskich serów.</p>
+          <span class="wine-tag">Wino białe</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/04-Gewurztraminer-wytrawne-2023.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/04-Gewurztraminer-wytrawne-2023.jpg" alt="Gewurztraminer wytrawne 2023" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Gewurztraminer wytrawne 2023</h3>
+          <p>Pełnia aromatu odmiany w wersji wytrawnej. Imbir, różowa woda, brzoskwinia. Oleista tekstura i długi finisz. Wino dla koneserów intensywnego bukietu.</p>
+          <span class="wine-tag">Wino białe</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/05-Irenka-Solaris.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/05-Irenka-Solaris.jpg" alt="Irenka Solaris — Winnica Bogu-Miła" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Irenka Solaris</h3>
+          <p>Słoneczna, aromatyczna Solaris z imieniem w nazwie. Morela, brzoskwinia, kwiaty lipy — pełne, zaokrąglone wino o długim finiszu. Nasze najbardziej rozpoznawalne białe.</p>
+          <span class="wine-tag">Wino białe</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/06-Pinot-Gris-2024.jpg">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/06-Pinot-Gris-2024.jpg" alt="Pinot Gris 2024" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Pinot Gris 2024</h3>
+          <p>Klasyczne, mineralne Pinot Gris z rocznika 2024. Świeże, suche, z nutami białych owoców i kremową teksturą. Znakomite do ryb, owoców morza i sałat.</p>
+          <span class="wine-tag">Wino białe</span>
+        </div>
+      </div>
+
+      <div class="wine-card" data-wine-img="https://mstudio.net/wp-content/uploads/2026/03/07-Pinot-Gris-Rose.jpg" style="grid-column: span 1;">
+        <div class="wine-img">
+          <img src="https://mstudio.net/wp-content/uploads/2026/03/07-Pinot-Gris-Rose.jpg" alt="Pinot Gris Rosé — Winnica Bogu-Miła" loading="lazy">
+          <div class="wine-img-overlay"><span class="wine-zoom">+</span></div>
+        </div>
+        <div class="wine-body">
+          <h3>Pinot Gris Rosé</h3>
+          <p>Różowe Pinot Gris o pięknej lososiowej barwie. Truskawka, malina, dzika róża i świeża kwasowość. Letnie, eleganckie, idealne do ogrodowych degustacji.</p>
+          <span class="wine-tag">Wino różowe</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     OFERTA ENOTURYSTYCZNA
+════════════════════════════════════ -->
+<section class="offer" id="oferta">
+  <p class="section-label">Enoturystyka</p>
+  <h2>Doświadczenia,<br>które <em>zostają z Tobą</em></h2>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="offer-num">01</div>
+      <h3>Degustacja z komentarzem</h3>
+      <p>Spróbuj wszystkich etykiet w towarzystwie deski lokalnych przysmaków. Każde wino omawiane przez właściciela — z pasją i bez zbędnego żargonu.</p>
+      <ul>
+        <li>Degustacja 4–7 win</li>
+        <li>Deska serów i wędlin</li>
+        <li>Pierogi i truskawki w sezonie</li>
+        <li>Dla osób indywidualnych i grup</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <div class="offer-num">02</div>
+      <h3>Oprowadzanie po winnicy</h3>
+      <p>Przejdź między rzędami winorośli i dowiedz się, jak rosną, jak są pielęgnowane i jak płaski teren Olesna wpływa na charakter win.</p>
+      <ul>
+        <li>Spacer po 1 ha upraw</li>
+        <li>Historia winnicy od 2008 r.</li>
+        <li>Odmiany, uprawa, zbiory</li>
+        <li>Możliwość łączenia z degustacją</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <div class="offer-num">03</div>
+      <h3>Pakiet dla grup i firm</h3>
+      <p>Organizujemy wizyty dla wycieczek, firm i rodzin. Termin i program ustalamy indywidualnie. Możliwe wydarzenie plenerowe przy winnicy.</p>
+      <ul>
+        <li>Grupy od 10 do 50+ osób</li>
+        <li>Integracje i wyjazdy firmowe</li>
+        <li>Pakiet turystyczny z Zalipiem</li>
+        <li>Wycena indywidualna</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     GALERIA
+════════════════════════════════════ -->
+<section class="gallery" id="galeria">
+  <div class="gallery-header">
+    <p class="section-label">Galeria</p>
+    <h2>Winnica w każdej<br><em>porze roku</em></h2>
+  </div>
+  <div class="gallery-grid">
+
+    <!-- ROW 1+2 left: duże zdjęcie wiodące -->
+    <div class="g-item wide tall" data-idx="0">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f8.jpg" alt="Zachód słońca nad winnicą Bogu-Miła" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+
+    <!-- ROW 1 right: 2 małe -->
+    <div class="g-item" data-idx="1">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f13.jpg" alt="Lokalne przysmaki na stoisku winnicy" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item" data-idx="2">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f14.jpg" alt="Degustacja win" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+
+    <!-- ROW 2 right: 2 małe -->
+    <div class="g-item" data-idx="3">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f11.jpg" alt="Wydarzenie plenerowe w winnicy" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item" data-idx="4">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/56.jpg" alt="Zielone winogrona na krzewie" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+
+    <!-- ROW 3: wide + 2 małe -->
+    <div class="g-item wide" data-idx="5">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f15.jpg" alt="Plenerowe wydarzenie muzyczne w winnicy" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item" data-idx="6">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f45.jpg" alt="Kieliszki z winem Bogu-Miła" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item" data-idx="7">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f42.jpg" alt="Winorośl — dojrzewające grona" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+
+    <!-- ROW 4: 2 małe + wide -->
+    <div class="g-item" data-idx="8">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f12.jpg" alt="Zachód słońca nad polami" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item" data-idx="9">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/f44.jpg" alt="Winorośl wczesną wiosną" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+    <div class="g-item wide" data-idx="10">
+      <img src="https://mstudio.net/wp-content/uploads/2026/03/41.jpg" alt="Winnica Bogu-Miła z lotu ptaka" loading="lazy">
+      <div class="g-overlay"><span class="g-zoom-icon">+</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">&#10005;</button>
+  <button class="lb-btn lb-prev" id="lb-prev">&#8592;</button>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <button class="lb-btn lb-next" id="lb-next">&#8594;</button>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     REGION — ZALIPIE
+════════════════════════════════════ -->
+<section class="zalipie" id="region" style="padding:0;">
+  <div class="zalipie-text">
+    <p class="section-label">Region ENOTarnowskie</p>
+    <h2>Winnica przy<br><em>Malowanej Wsi</em></h2>
+    <p>Winnica Bogu-Miła leży w bliskim sąsiedztwie Zalipia — jednej z najbardziej znanych polskich wsi, słynącej z tradycji malowania kwiatów na chatach, płotach i wnętrzach. To obowiązkowy punkt każdego enoturysty w okolicy.</p>
+    <p>Region ENOTarnowskie to kilkanaście winnic współpracujących, by pokazać, że polska Małopolska ma własny, wyrazisty charakter winiarski. Jarosław Bogumił był jednym z pionierów tego ruchu.</p>
+    <a href="https://www.enotarnowskie.pl/articles/bogumila" target="_blank" class="btn-primary" style="align-self:flex-start; margin-top:0.5rem;">Zaplanuj pobyt w okolicy →</a>
+  </div>
+  <div class="zalipie-img">
+    <img src="https://mstudio.net/wp-content/uploads/2026/03/f12.jpg" alt="Krajobraz okolic winnicy Bogu-Miła o zachodzie słońca" loading="lazy">
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     KONTAKT
+════════════════════════════════════ -->
+<section class="contact" id="kontakt">
+  <div style="max-width:640px; margin-bottom:3rem;">
+    <p class="section-label">Kontakt i rezerwacje</p>
+    <h2>Umów wizytę<br>w <em>Winnicy Bogu-Miła</em></h2>
+    <p class="lead">Terminy ustalane indywidualnie — zadzwoń lub napisz, a Jarosław Bogumił dopasuje termin do Twoich planów.</p>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-item">
+        <div class="c-icon">&#9679;</div>
+        <div>
+          <div class="c-label">Adres</div>
+          <div class="c-value">ul. Długa 158, Olesno<br>gm. Olesno, Małopolska</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">&#9742;</div>
+        <div>
+          <div class="c-label">Telefon</div>
+          <div class="c-value"><a href="tel:+48605475625" style="color:var(--ink); text-decoration:none;">605 475 625</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">&#9993;</div>
+        <div>
+          <div class="c-label">E-mail</div>
+          <div class="c-value"><a href="/cdn-cgi/l/email-protection#5c2b353232353f3d3e333b293135303d1c3b313d3530723f3331" style="color:var(--wine); text-decoration:none;"><span class="__cf_email__" data-cfemail="a1d6c8cfcfc8c2c0c3cec6d4ccc8cdc0e1c6ccc0c8cd8fc2cecc">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">&#9201;</div>
+        <div>
+          <div class="c-label">Godziny otwarcia</div>
+          <div class="c-value">Po wcześniejszym umówieniu telefonicznym</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">f</div>
+        <div>
+          <div class="c-label">Facebook</div>
+          <div class="c-value"><a href="https://www.facebook.com/Winnica.BoguMila" target="_blank" style="color:var(--wine); text-decoration:none;">fb.com/Winnica.BoguMila</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="border-radius: 2px; overflow: hidden; min-height: 420px; position: relative; box-shadow: 0 4px 24px rgba(28,24,16,0.12);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d20.9002493!3d50.2146155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d7df03bdce745%3A0x5bad733999d5f352!2sWinnica%20BOGU-MI%C5%81A!5e0!3m2!1spl!2spl!4v1711000000000!5m2!1spl!2spl"
+        width="100%"
+        height="100%"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Winnica Bogu-Miła — lokalizacja Google Maps">
+      </iframe>
+      <a href="https://www.google.com/maps/place/Winnica+BOGU-MI%C5%81A/@50.2135545,20.8993335,16.13z/data=!4m15!1m8!3m7!1s0x473d7df03ba053b1:0x869ce0133cc45aa7!2sD%C5%82uga+158,+33-210+Olesno!3b1!8m2!3d50.2141864!4d20.9005777!16s%2Fg%2F11h23l1402!3m5!1s0x473d7df03bdce745:0x5bad733999d5f352!8m2!3d50.2146155!4d20.9002493!16s%2Fg%2F11g8cd71qn" target="_blank"
+        style="position: absolute; bottom: 1rem; right: 1rem; z-index: 10;
+          background: var(--wine); color: var(--cream);
+          font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+          letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+          padding: 0.6rem 1.2rem; border-radius: 2px; transition: background .2s;">
+        Otwórz w Google Maps →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     SKLEP INTERNETOWY
+════════════════════════════════════ -->
+<section id="sklep" style="background: var(--wine-dark); padding: 5rem 8%;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+    <div>
+      <p class="section-label" style="color: var(--gold-light);">Sklep internetowy</p>
+      <h2 style="color: var(--cream);">Zamów wino<br><em>prosto do domu</em></h2>
+      <p style="font-size: 1.02rem; font-weight: 300; line-height: 1.82; color: rgba(250,246,238,0.72); margin-bottom: 2rem;">Nie możesz odwiedzić nas osobiście? Wina Bogu-Miła zamówisz online — z dostawą pod drzwi, w każdą część Polski. Cuvée Blanc, Irenka Solaris, Pinot Gris Rosé i pozostałe etykiety czekają na Ciebie w naszym sklepie.</p>
+      <a href="#" style="display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gold); color: var(--wine-dark); font-family: var(--sans); font-size: 0.95rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1.1rem 2.2rem; border-radius: 2px; transition: background .25s;" onmouseover="this.style.background='#E8C97A'" onmouseout="this.style.background='#C8972E'">
+        Przejdź do sklepu →
+      </a>
+      <p style="font-size: 0.82rem; color: rgba(250,246,238,0.35); margin-top: 1rem;">Sklep otwarty przez całą dobę · Płatność online</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.6rem; background: rgba(250,246,238,0.06); border: 1px solid rgba(250,246,238,0.10); border-radius: 2px;">
+        <span style="color: var(--gold); font-size: 1.5rem; flex: 0 0 auto;">✓</span>
+        <div>
+          <div style="font-size: 0.97rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem;">Dostawa na terenie całej Polski</div>
+          <div style="font-size: 0.84rem; font-weight: 300; color: rgba(250,246,238,0.50);">Szybka wysyłka, bezpieczne pakowanie</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.6rem; background: rgba(250,246,238,0.06); border: 1px solid rgba(250,246,238,0.10); border-radius: 2px;">
+        <span style="color: var(--gold); font-size: 1.5rem; flex: 0 0 auto;">✓</span>
+        <div>
+          <div style="font-size: 0.97rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem;">Wszystkie 7 etykiet dostępnych online</div>
+          <div style="font-size: 0.84rem; font-weight: 300; color: rgba(250,246,238,0.50);">Białe, czerwone, różowe i Cuvée</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.6rem; background: rgba(250,246,238,0.06); border: 1px solid rgba(250,246,238,0.10); border-radius: 2px;">
+        <span style="color: var(--gold); font-size: 1.5rem; flex: 0 0 auto;">✓</span>
+        <div>
+          <div style="font-size: 0.97rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem;">Płatność online, faktura na życzenie</div>
+          <div style="font-size: 0.84rem; font-weight: 300; color: rgba(250,246,238,0.50);">Bezpieczne transakcje 24/7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div>
+    <img src="https://mstudio.net/wp-content/uploads/2026/03/logo-Bogu-Mila-biale.png" alt="Winnica Bogu-Miła" style="height: 100px; width: auto; display: block; margin-bottom: 0.6rem;">
+    <small>Olesno · Małopolska · od 2008 roku</small>
+  </div>
+  <div class="f-links">
+    <a href="#o-winnicy">O winnicy</a>
+    <a href="#wina">Wina</a>
+    <a href="#oferta">Oferta</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#" >Sklep internetowy</a>
+  </div>
+  <div style="text-align: right;">
+    <p style="font-size:0.81rem;">© 2026 Winnica Bogu-Miła — Jarosław Bogumił</p>
+    <p style="font-size:0.79rem; margin-top:0.4rem;">Web design: <a href="https://mstudio.net" target="_blank" style="color: var(--gold-light); text-decoration: none;">mstudio.net</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ── SLIDER ── */
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0, tmr;
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  function play() { tmr = setInterval(() => goTo(cur + 1), 5500); }
+  document.getElementById('next').onclick = () => { clearInterval(tmr); goTo(cur + 1); play(); };
+  document.getElementById('prev').onclick = () => { clearInterval(tmr); goTo(cur - 1); play(); };
+  dots.forEach(d => d.addEventListener('click', () => { clearInterval(tmr); goTo(+d.dataset.idx); play(); }));
+  play();
+
+  /* ── HAMBURGER ── */
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.drawer-link, .drawer-cta').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── WINE LIGHTBOX ── */
+  const wineCards  = Array.from(document.querySelectorAll('.wine-card'));
+  const wineImgs   = wineCards.map(c => ({
+    src: c.dataset.wineImg,
+    alt: c.querySelector('h3').textContent,
+    caption: c.querySelector('h3').textContent
+  }));
+  let wineLbCur = 0;
+  const lb     = document.getElementById('lightbox');
+  const lbImg  = document.getElementById('lb-img');
+  const lbCount= document.getElementById('lb-counter');
+  const lbCap  = document.getElementById('lb-caption');
+
+  function lbOpen(idx, arr) {
+    window._lbArr = arr;
+    window._lbCur = idx;
+    lbImg.src = arr[idx].src;
+    lbImg.alt = arr[idx].alt;
+    lbCount.textContent = (idx + 1) + ' / ' + arr.length;
+    lbCap.textContent = arr[idx].caption || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbClose() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lbNext() {
+    const arr = window._lbArr;
+    window._lbCur = (window._lbCur + 1) % arr.length;
+    lbImg.src = arr[window._lbCur].src;
+    lbImg.alt = arr[window._lbCur].alt;
+    lbCount.textContent = (window._lbCur + 1) + ' / ' + arr.length;
+    lbCap.textContent = arr[window._lbCur].caption || '';
+  }
+  function lbPrev() {
+    const arr = window._lbArr;
+    window._lbCur = (window._lbCur - 1 + arr.length) % arr.length;
+    lbImg.src = arr[window._lbCur].src;
+    lbImg.alt = arr[window._lbCur].alt;
+    lbCount.textContent = (window._lbCur + 1) + ' / ' + arr.length;
+    lbCap.textContent = arr[window._lbCur].caption || '';
+  }
+
+  wineCards.forEach((c, i) => c.addEventListener('click', () => lbOpen(i, wineImgs)));
+
+  /* ── GALLERY LIGHTBOX ── */
+  const gItems  = Array.from(document.querySelectorAll('.g-item'));
+  const gImgs   = gItems.map(el => ({
+    src: el.querySelector('img').src,
+    alt: el.querySelector('img').alt,
+    caption: ''
+  }));
+  gItems.forEach((el, i) => el.addEventListener('click', () => lbOpen(i, gImgs)));
+
+  document.getElementById('lb-close').addEventListener('click', lbClose);
+  document.getElementById('lb-next').addEventListener('click', lbNext);
+  document.getElementById('lb-prev').addEventListener('click', lbPrev);
+  lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'ArrowLeft')  lbPrev();
+    if (e.key === 'Escape')     lbClose();
+  });
+</script>
+</body>
+</html>
